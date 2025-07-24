@@ -15,11 +15,6 @@
       overscroll-behavior-y: none;
       touch-action: pan-y;
     }
-    .auth-toggle {
-      color: #25D366;
-      cursor: pointer;
-      text-decoration: underline;
-    }
     .message-bubble {
       max-width: 75%;
       word-wrap: break-word;
@@ -49,7 +44,7 @@
       background-color: #0B141A;
       color: #E9EDEF;
     }
-    .dark-mode .auth-card {
+    .dark-mode .profile-card {
       background-color: #202C33;
     }
     .dark-mode input {
@@ -220,56 +215,10 @@
   </style>
 </head>
 <body class="bg-gray-100 transition-colors duration-200">
-  <!-- Auth Container -->
-  <div id="authContainer" class="min-h-screen flex items-center justify-center p-4">
-    <!-- Auth Card -->
-    <div class="bg-white rounded-lg shadow-md p-6 w-full max-w-md dark:bg-gray-800">
-      <!-- Login Form -->
-      <div id="loginForm">
-        <h2 class="text-2xl font-bold mb-4 text-center dark:text-white">Sign In</h2>
-        <div class="mb-4">
-          <label class="block text-gray-700 dark:text-gray-300 mb-2" for="loginEmail">Email</label>
-          <input type="email" id="loginEmail" class="w-full p-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-        </div>
-        <div class="mb-4">
-          <label class="block text-gray-700 dark:text-gray-300 mb-2" for="loginPassword">Password</label>
-          <input type="password" id="loginPassword" class="w-full p-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-        </div>
-        <button id="loginBtn" class="w-full bg-green-500 text-white p-3 rounded-lg hover:bg-green-600 mb-4">Sign In</button>
-        <p class="text-center text-gray-600 dark:text-gray-400">
-          Don't have an account? <span id="showSignup" class="auth-toggle">Sign up</span>
-        </p>
-        <div id="loginError" class="text-red-500 mt-2 text-sm hidden"></div>
-      </div>
-
-      <!-- Signup Form -->
-      <div id="signupForm" class="hidden">
-        <h2 class="text-2xl font-bold mb-4 text-center dark:text-white">Sign Up</h2>
-        <div class="mb-4">
-          <label class="block text-gray-700 dark:text-gray-300 mb-2" for="signupEmail">Email</label>
-          <input type="email" id="signupEmail" class="w-full p-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-        </div>
-        <div class="mb-4">
-          <label class="block text-gray-700 dark:text-gray-300 mb-2" for="signupPassword">Password</label>
-          <input type="password" id="signupPassword" class="w-full p-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-        </div>
-        <div class="mb-4">
-          <label class="block text-gray-700 dark:text-gray-300 mb-2" for="confirmPassword">Confirm Password</label>
-          <input type="password" id="confirmPassword" class="w-full p-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-        </div>
-        <button id="signupBtn" class="w-full bg-green-500 text-white p-3 rounded-lg hover:bg-green-600 mb-4">Sign Up</button>
-        <p class="text-center text-gray-600 dark:text-gray-400">
-          Already have an account? <span id="showLogin" class="auth-toggle">Sign in</span>
-        </p>
-        <div id="signupError" class="text-red-500 mt-2 text-sm hidden"></div>
-      </div>
-    </div>
-  </div>
-
   <!-- Profile Setup -->
-  <div id="profileSetup" class="min-h-screen flex items-center justify-center p-4 hidden">
+  <div id="profileSetup" class="min-h-screen flex items-center justify-center p-4">
     <div class="bg-white rounded-lg shadow-md p-6 w-full max-w-md dark:bg-gray-800">
-      <h2 class="text-2xl font-bold mb-6 text-center dark:text-white">Complete Your Profile</h2>
+      <h2 class="text-2xl font-bold mb-6 text-center dark:text-white">Enter Your Profile</h2>
       <div class="text-center mb-6">
         <div class="profile-avatar-wrapper">
           <img id="previewAvatar" class="profile-avatar">
@@ -286,7 +235,7 @@
         <label class="block text-gray-700 dark:text-gray-300 mb-2" for="username">Username</label>
         <input type="text" id="username" class="w-full p-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
       </div>
-      <button id="saveProfileBtn" class="w-full bg-green-500 text-white p-3 rounded-lg hover:bg-green-600">Save Profile</button>
+      <button id="saveProfileBtn" class="w-full bg-green-500 text-white p-3 rounded-lg hover:bg-green-600">Start Chatting</button>
       <div id="profileError" class="text-red-500 mt-2 text-sm hidden"></div>
     </div>
   </div>
@@ -350,6 +299,10 @@
           <span class="dark:text-white">Dark Mode</span>
         </div>
         
+        <button id="editProfileMenuBtn" class="w-full bg-green-500 text-white p-2 rounded-lg hover:bg-green-600 mb-4">
+          Edit Profile
+        </button>
+        
         <div class="text-sm text-gray-500 dark:text-gray-400 mt-8">
           <p>TEXT ERA Chat App</p>
           <p>Made by Rao Jatin</p>
@@ -371,12 +324,10 @@
           </div>
         </div>
         <h2 id="modalUsername" class="text-2xl font-bold mt-4 dark:text-white"></h2>
-        <p id="modalEmail" class="text-gray-600 dark:text-gray-400 mt-1"></p>
       </div>
       
-      <div class="flex justify-between">
+      <div class="flex justify-center">
         <button id="editProfileBtn" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Edit Profile</button>
-        <button id="logoutBtn" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">Logout</button>
       </div>
       <button id="closeProfileModal" class="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -389,13 +340,6 @@
   <!-- Firebase SDK -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-    import { 
-      getAuth, 
-      createUserWithEmailAndPassword, 
-      signInWithEmailAndPassword, 
-      signOut,
-      onAuthStateChanged 
-    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
     import { 
       getFirestore, 
       collection, 
@@ -427,22 +371,13 @@
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
     const db = getFirestore(app);
     const storage = getStorage(app);
 
     // DOM Elements
-    const authContainer = document.getElementById('authContainer');
-    const loginForm = document.getElementById('loginForm');
-    const signupForm = document.getElementById('signupForm');
     const profileSetup = document.getElementById('profileSetup');
     const chatContainer = document.getElementById('chatContainer');
-    const showSignup = document.getElementById('showSignup');
-    const showLogin = document.getElementById('showLogin');
-    const loginBtn = document.getElementById('loginBtn');
-    const signupBtn = document.getElementById('signupBtn');
     const saveProfileBtn = document.getElementById('saveProfileBtn');
-    const logoutBtn = document.getElementById('logoutBtn');
     const darkModeToggle = document.getElementById('darkModeToggle');
     const darkModeIcon = document.getElementById('darkModeIcon');
     const menuBtn = document.getElementById('menuBtn');
@@ -453,33 +388,29 @@
     const profileModal = document.getElementById('profileModal');
     const closeProfileModal = document.getElementById('closeProfileModal');
     const editProfileBtn = document.getElementById('editProfileBtn');
+    const editProfileMenuBtn = document.getElementById('editProfileMenuBtn');
     const modalAvatar = document.getElementById('modalAvatar');
     const modalUsername = document.getElementById('modalUsername');
-    const modalEmail = document.getElementById('modalEmail');
     const modalVerifiedBadge = document.getElementById('modalVerifiedBadge');
     const messageInput = document.getElementById('messageInput');
     const sendBtn = document.getElementById('sendBtn');
     const messagesDiv = document.getElementById('messages');
     const headerAvatar = document.getElementById('headerAvatar');
-    const loginEmail = document.getElementById('loginEmail');
-    const loginPassword = document.getElementById('loginPassword');
-    const signupEmail = document.getElementById('signupEmail');
-    const signupPassword = document.getElementById('signupPassword');
-    const confirmPassword = document.getElementById('confirmPassword');
     const usernameInput = document.getElementById('username');
     const avatarUpload = document.getElementById('avatarUpload');
     const avatarUploadBtn = document.getElementById('avatarUploadBtn');
     const previewAvatar = document.getElementById('previewAvatar');
     const avatarInitials = document.getElementById('avatarInitials');
-    const loginError = document.getElementById('loginError');
-    const signupError = document.getElementById('signupError');
     const profileError = document.getElementById('profileError');
 
     // State
-    let currentUser = null;
+    let currentUser = {
+      uid: generateUserId(),
+      displayName: '',
+      avatarUrl: ''
+    };
     let darkMode = localStorage.getItem('darkMode') === 'true';
     let avatarFile = null;
-    let keyboardHeight = 0;
 
     // Initialize UI
     if (darkMode) {
@@ -488,22 +419,7 @@
     }
 
     // Event Listeners
-    showSignup.addEventListener('click', () => {
-      loginForm.classList.add('hidden');
-      signupForm.classList.remove('hidden');
-      clearErrors();
-    });
-
-    showLogin.addEventListener('click', () => {
-      signupForm.classList.add('hidden');
-      loginForm.classList.remove('hidden');
-      clearErrors();
-    });
-
-    loginBtn.addEventListener('click', handleLogin);
-    signupBtn.addEventListener('click', handleSignup);
     saveProfileBtn.addEventListener('click', saveProfile);
-    logoutBtn.addEventListener('click', handleLogout);
     darkModeToggle.addEventListener('click', toggleDarkMode);
     menuBtn.addEventListener('click', toggleMenu);
     closeMenuBtn.addEventListener('click', toggleMenu);
@@ -516,6 +432,10 @@
       profileModal.classList.add('hidden');
       showProfileSetup();
     });
+    editProfileMenuBtn.addEventListener('click', () => {
+      toggleMenu();
+      showProfileSetup();
+    });
     avatarUploadBtn.addEventListener('click', () => {
       avatarUpload.click();
     });
@@ -526,7 +446,6 @@
 
     // Handle keyboard events for mobile
     messageInput.addEventListener('focus', () => {
-      // On mobile, we need to adjust the input position when keyboard appears
       if (window.innerWidth <= 768) {
         setTimeout(() => {
           messagesDiv.scrollTop = messagesDiv.scrollHeight;
@@ -535,7 +454,6 @@
     });
 
     messageInput.addEventListener('blur', () => {
-      // Reset when keyboard hides
       if (window.innerWidth <= 768) {
         setTimeout(() => {
           messagesDiv.scrollTop = messagesDiv.scrollHeight;
@@ -566,17 +484,11 @@
       }
     });
 
-    // Auth State Observer
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        currentUser = user;
-        checkUserProfile(user.uid);
-      } else {
-        showAuth();
-      }
-    });
-
     // Functions
+    function generateUserId() {
+      return 'user_' + Math.random().toString(36).substr(2, 9);
+    }
+
     function toggleDarkMode() {
       darkMode = !darkMode;
       localStorage.setItem('darkMode', darkMode);
@@ -588,97 +500,9 @@
       document.body.classList.toggle('menu-open');
     }
 
-    function clearErrors() {
-      loginError.classList.add('hidden');
-      signupError.classList.add('hidden');
-      profileError.classList.add('hidden');
-    }
-
     function showError(element, message) {
       element.textContent = message;
       element.classList.remove('hidden');
-    }
-
-    async function handleLogin() {
-      const email = loginEmail.value;
-      const password = loginPassword.value;
-      
-      if (!email || !password) {
-        showError(loginError, 'Please enter both email and password');
-        return;
-      }
-
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-      } catch (error) {
-        let errorMessage = 'Login failed. Please try again.';
-        switch (error.code) {
-          case 'auth/invalid-email':
-            errorMessage = 'Invalid email address';
-            break;
-          case 'auth/user-disabled':
-            errorMessage = 'Account disabled';
-            break;
-          case 'auth/user-not-found':
-            errorMessage = 'No account found with this email';
-            break;
-          case 'auth/wrong-password':
-            errorMessage = 'Incorrect password';
-            break;
-        }
-        showError(loginError, errorMessage);
-      }
-    }
-
-    async function handleSignup() {
-      const email = signupEmail.value;
-      const password = signupPassword.value;
-      const confirm = confirmPassword.value;
-      
-      if (!email || !password || !confirm) {
-        showError(signupError, 'Please fill all fields');
-        return;
-      }
-      
-      if (password !== confirm) {
-        showError(signupError, 'Passwords do not match');
-        return;
-      }
-      
-      if (password.length < 6) {
-        showError(signupError, 'Password must be at least 6 characters');
-        return;
-      }
-
-      try {
-        await createUserWithEmailAndPassword(auth, email, password);
-      } catch (error) {
-        let errorMessage = 'Signup failed. Please try again.';
-        switch (error.code) {
-          case 'auth/email-already-in-use':
-            errorMessage = 'Email already in use';
-            break;
-          case 'auth/invalid-email':
-            errorMessage = 'Invalid email address';
-            break;
-          case 'auth/weak-password':
-            errorMessage = 'Password is too weak';
-            break;
-        }
-        showError(signupError, errorMessage);
-      }
-    }
-
-    async function checkUserProfile(userId) {
-      const userDoc = await getDoc(doc(db, 'users', userId));
-      if (userDoc.exists()) {
-        // Update header avatar
-        headerAvatar.src = userDoc.data().avatarUrl;
-        showChat();
-        loadMessages();
-      } else {
-        showProfileSetup();
-      }
     }
 
     async function saveProfile() {
@@ -700,6 +524,9 @@
         }
 
         // Save user profile
+        currentUser.displayName = username;
+        currentUser.avatarUrl = avatarUrl;
+        
         await setDoc(doc(db, 'users', currentUser.uid), {
           displayName: username,
           avatarUrl: avatarUrl,
@@ -715,88 +542,55 @@
       }
     }
 
-    function showAuth() {
-      authContainer.classList.remove('hidden');
-      profileSetup.classList.add('hidden');
-      chatContainer.classList.add('hidden');
-      loginForm.classList.remove('hidden');
-      signupForm.classList.add('hidden');
-      clearFormInputs();
-    }
-
     function showProfileSetup() {
-      authContainer.classList.add('hidden');
       profileSetup.classList.remove('hidden');
       chatContainer.classList.add('hidden');
       
       // Reset profile form
-      usernameInput.value = '';
+      usernameInput.value = currentUser.displayName || '';
       avatarUpload.value = '';
       avatarFile = null;
       previewAvatar.style.display = 'none';
       avatarInitials.style.display = 'block';
-      avatarInitials.textContent = '';
-      clearErrors();
+      avatarInitials.textContent = usernameInput.value ? usernameInput.value.charAt(0).toUpperCase() : '';
+      profileError.classList.add('hidden');
     }
 
     function showChat() {
-      authContainer.classList.add('hidden');
       profileSetup.classList.add('hidden');
       chatContainer.classList.remove('hidden');
       messageInput.focus();
     }
 
     async function showProfileModal() {
-      if (!currentUser) return;
-      
       const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
       if (userDoc.exists()) {
         modalAvatar.src = userDoc.data().avatarUrl;
         modalUsername.textContent = userDoc.data().displayName;
-        modalEmail.textContent = currentUser.email;
-        
-        // Show verified badge for raoscomedy@gmail.com
-        if (currentUser.email === 'raoscomedy@gmail.com') {
-          modalVerifiedBadge.classList.remove('hidden');
-        } else {
-          modalVerifiedBadge.classList.add('hidden');
-        }
-        
         profileModal.classList.remove('hidden');
       }
     }
 
-    async function handleLogout() {
-      try {
-        await signOut(auth);
-        profileModal.classList.add('hidden');
-      } catch (error) {
-        console.error('Logout error:', error);
-      }
-    }
-
     function clearFormInputs() {
-      loginEmail.value = '';
-      loginPassword.value = '';
-      signupEmail.value = '';
-      signupPassword.value = '';
-      confirmPassword.value = '';
-      clearErrors();
+      usernameInput.value = '';
+      avatarUpload.value = '';
+      avatarFile = null;
+      previewAvatar.style.display = 'none';
+      avatarInitials.style.display = 'block';
+      avatarInitials.textContent = '';
+      profileError.classList.add('hidden');
     }
 
     async function sendMessage() {
       const messageText = messageInput.value.trim();
       if (!messageText) return;
       
-      const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
-      const userData = userDoc.data();
-      
       try {
         await addDoc(collection(db, 'messages'), {
           text: messageText,
           userId: currentUser.uid,
-          displayName: userData.displayName,
-          avatarUrl: userData.avatarUrl,
+          displayName: currentUser.displayName,
+          avatarUrl: currentUser.avatarUrl,
           createdAt: serverTimestamp(),
           reactions: {}
         });
@@ -825,7 +619,7 @@
     }
 
     function displayMessage(message, messageId) {
-      const isCurrentUser = message.userId === currentUser?.uid;
+      const isCurrentUser = message.userId === currentUser.uid;
       const messageDiv = document.createElement('div');
       messageDiv.className = `flex mb-4 ${isCurrentUser ? 'justify-end' : 'justify-start'}`;
       
@@ -901,18 +695,9 @@
       if (userDoc.exists()) {
         modalAvatar.src = userDoc.data().avatarUrl;
         modalUsername.textContent = userDoc.data().displayName;
-        modalEmail.textContent = userId === currentUser.uid ? currentUser.email : '';
         
-        // Show verified badge for raoscomedy@gmail.com
-        if (userId === currentUser.uid && currentUser.email === 'raoscomedy@gmail.com') {
-          modalVerifiedBadge.classList.remove('hidden');
-        } else {
-          modalVerifiedBadge.classList.add('hidden');
-        }
-        
-        // Hide edit and logout buttons for other users
+        // Hide edit button for other users
         editProfileBtn.style.display = userId === currentUser.uid ? 'block' : 'none';
-        logoutBtn.style.display = userId === currentUser.uid ? 'block' : 'none';
         
         profileModal.classList.remove('hidden');
       }
